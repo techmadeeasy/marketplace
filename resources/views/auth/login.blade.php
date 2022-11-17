@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -10,9 +10,9 @@
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <form method="POST" action="{{ route('login') }}">
-            @csrf
+        @csrf
 
-            <!-- Email Address -->
+        <!-- Email Address -->
             <div>
                 <x-input-label for="email" :value="__('Email')" />
 
@@ -26,9 +26,9 @@
                 <x-input-label for="password" :value="__('Password')" />
 
                 <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                              type="password"
+                              name="password"
+                              required autocomplete="current-password" />
 
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
@@ -54,4 +54,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-layout>

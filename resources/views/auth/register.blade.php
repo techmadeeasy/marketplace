@@ -1,8 +1,8 @@
-<x-guest-layout>
+<x-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="{{ asset('/assets/img/default-monochrome-black.svg') }}" alt="My Logo" width="165" height="16">
             </a>
         </x-slot>
 
@@ -61,4 +61,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-layout>

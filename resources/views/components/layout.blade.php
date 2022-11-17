@@ -17,7 +17,9 @@
 
 
         <div class="flex items-center">
-            <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+           @auth()
+                <a href="{{ route('dashboard') }}" class="text-xs font-bold uppercase">Dashboard</a>
+            @endauth
             <form method="POST" action="#" class="lg:flex text-sm">
                 <div class="lg:py-3 lg:px-5 flex items-center">
                     <input  type="text" placeholder="Search...." name="search"
@@ -36,7 +38,12 @@
     {{ $slot }}
 
     <footer class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
-        <img src="/assets/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">
+        @guest()
+            <div>
+                <a href="{{ route('login') }}" class="text-xs font-bold uppercase">Login</a> |
+                <a href="{{ route('register') }}" class="text-xs font-bold uppercase">Register</a>
+            </div>
+        @endguest
         <h5 class="text-3xl">Sell it, you won't miss it</h5>
         <p class="text-sm mt-3">We promise to make the process enjoyable</p>
     </footer>
