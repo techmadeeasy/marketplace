@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\ListingController::class, 'index']);
-Route::get('/listing/{slug}', [\App\Http\Controllers\ListingController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\ListingController::class, 'index'])->name('index');
+Route::get('/category/{category:slug}', [\App\Http\Controllers\ListingController::class, 'showByCategory'])->name('listing-by-category');
+Route::get('/listing/{category_slug}/{listing:slug}', [\App\Http\Controllers\ListingController::class, 'show'])->name('view-listing');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

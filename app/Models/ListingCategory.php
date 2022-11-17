@@ -11,8 +11,8 @@ class ListingCategory extends Model
 
     protected $guarded = [];
 
-    public function listing()
+    public function listings()
     {
-        return $this->hasMany(Listing::class);
+        return $this->hasMany(Listing::class, 'category_id');
     }
 }

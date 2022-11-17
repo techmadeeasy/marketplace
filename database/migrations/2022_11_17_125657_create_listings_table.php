@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description');
+            $table->string('image_path');
             $table->foreignId('category_id')->references('id')->on('listing_categories')->cascadeOnUpdate();
             $table->date('date_published');
             $table->date('date_unpublished')->nullable();
