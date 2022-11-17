@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
     <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
@@ -22,18 +23,7 @@
                 @auth()
                     <a href="{{ route('dashboard') }}" class="text-xs font-bold uppercase">Dashboard</a>
                 @endauth
-                <form method="POST" action="#" class="lg:flex text-sm">
-                    <div class="lg:py-3 lg:px-5 flex items-center">
-                        <input  type="search" placeholder="Search...." name="search"
-                                class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none rounded-full">
-                    </div>
-
-                    <button type="submit"
-                            class="transition-colors duration-300 bg-black hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
-                    >
-                        Search
-                    </button>
-                </form>
+                <livewire:search-listing/>
             </div>
         </nav>
 
@@ -50,5 +40,6 @@
             <p class="text-sm mt-3">We promise to make the process enjoyable</p>
         </footer>
     </section>
+    @livewireScripts
     </body>
 </html>

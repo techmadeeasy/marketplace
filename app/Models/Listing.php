@@ -23,10 +23,10 @@ class Listing extends Model
     }
 
 
-    public function scopeFilter($query, array $filters){
-        if ($filters['search'] ?? false){
-            $query->where('title', 'like', '%'. request('search') . '%')
-                ->orWhere('body', 'like', '%'. request('search') . '%');
+    public function scopeFilter($query, $term){
+        if ($term){
+            $query->where('title', 'like', '%'. $term . '%')
+                ->orWhere('description', 'like', '%'. $term . '%');
         }
     }
 }
