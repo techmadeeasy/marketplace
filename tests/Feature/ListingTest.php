@@ -2,13 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ListingTest extends TestCase
 {
+
+    use RefreshDatabase;
     /**.
      * authenticated user can create a listing
      *
@@ -56,9 +58,26 @@ class ListingTest extends TestCase
      *
      * @test
      */
-    public function can_view_listings()
+    public function can_view_all_available_listings()
     {
-        $listing = Listing::factory()->create();
+        $this->artisan('migrate:fresh --seed');
+        $listing = Listing::take(1)->get()->first();
+        $response = $this->get('/' . $listing->slug);
+        $response->assertViewHas('listings');
+        $response->assertViewIs('index');
+    }
+
+
+    /**
+     *
+     * visitor can view all listings
+     *
+     * @test
+     */
+    public function can_view_specific_single_listing()
+    {
+        $this->artisan('migrate:fresh --seed');
+        $listing = Listing::take(1)->get()->first();
         $response = $this->get('/listing/' . $listing->slug);
         $response->assertViewHas('listing');
         $response->assertViewIs('view');
