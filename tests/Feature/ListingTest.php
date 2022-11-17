@@ -62,9 +62,9 @@ class ListingTest extends TestCase
     {
         $this->artisan('migrate:fresh --seed');
         $listing = Listing::take(1)->get()->first();
-        $response = $this->get('/' . $listing->slug);
+        $response = $this->get('/');
         $response->assertViewHas('listings');
-        $response->assertViewIs('index');
+        $response->assertViewIs('listings.index');
     }
 
 
@@ -76,11 +76,12 @@ class ListingTest extends TestCase
      */
     public function can_view_specific_single_listing()
     {
+        $this->withoutExceptionHandling();
         $this->artisan('migrate:fresh --seed');
         $listing = Listing::take(1)->get()->first();
-        $response = $this->get('/listing/' . $listing->slug);
+        $response = $this->get('/listing/' . $listing->category->slug . '/' . $listing->slug);
         $response->assertViewHas('listing');
-        $response->assertViewIs('view');
+        $response->assertViewIs('listings.view');
     }
 
 
