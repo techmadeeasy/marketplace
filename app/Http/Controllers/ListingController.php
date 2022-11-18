@@ -24,9 +24,9 @@ class ListingController extends Controller
 
     public function showByCategory(ListingCategory $category)
     {
-        $listings = $category->listings;
+        $listings = Listing::where('category_id', $category->id)->with(['user', 'category'])->paginate(5);
         return view('listings.index', [
-            'listings' => $listings->load(['user', 'category'])
+            'listings' => $listings
         ]);
     }
     public function search(Request $request)
