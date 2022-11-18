@@ -27,6 +27,9 @@
                 <p>
                     {{ substr($listing->description, 0, 50) }}.....
                 </p>
+                <p>
+                    {{ $listing->currency }} {{ number_format($listing->price, '2', '.', ' ') }}
+                </p>
             </div>
 
             <footer class="flex justify-between items-center mt-8">

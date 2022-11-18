@@ -21,8 +21,12 @@
 
             <div class="flex items-center">
                 @auth()
-                    <a href="{{ route('dashboard') }}" class="text-xs font-bold uppercase">Dashboard</a>
+                    <a href="{{ route('dashboard.listings.index') }}" class="font-bold uppercase">Dashboard</a>
                 @endauth
+                @guest()
+                    <a href="{{ route('login') }}" class="font-bold uppercase">Login</a> |
+                    <a href="{{ route('register') }}" class="font-bold uppercase">Register</a>
+                @endguest
                 <livewire:search-listing/>
             </div>
         </nav>
@@ -30,12 +34,6 @@
         {{ $slot }}
 
         <footer class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
-            @guest()
-                <div>
-                    <a href="{{ route('login') }}" class="text-xs font-bold uppercase">Login</a> |
-                    <a href="{{ route('register') }}" class="text-xs font-bold uppercase">Register</a>
-                </div>
-            @endguest
             <h5 class="text-3xl">Sell it, you won't miss it</h5>
             <p class="text-sm mt-3">We promise to make the process enjoyable</p>
         </footer>

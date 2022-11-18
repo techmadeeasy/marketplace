@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\SearchListing;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class ListingTest extends TestCase
@@ -81,7 +83,7 @@ class ListingTest extends TestCase
         $listing = Listing::take(1)->get()->first();
         $response = $this->get('/listing/' . $listing->category->slug . '/' . $listing->slug);
         $response->assertViewHas('listing');
-        $response->assertViewIs('listings.view');
+        $response->assertViewIs('listings.show');
     }
 
 
@@ -93,29 +95,10 @@ class ListingTest extends TestCase
      */
     public function can_search_listing()
     {
-        $response = $this->post('listing/search', [
-            'keyword' => 'Honda'
-        ]);
-
-        $response->assertViewHas('listing');
+        Livewire::test(SearchListing::class)
+            ->set('search', 'nemo')
+            ->assertViewIs('livewire.search-listing');
     }
 
-    /**
-     *
-     * authenticated user can update their listing
-     *
-     * @test
-     */
-    public function can_update_listing()
-    {
-        $user = User::factory()->create();
-        $listing = Listing::factory()->create();
-        $response = $this->actingAs($user)->post('/listing/update/' . $listing->slug, [
-            'description' => 'Selling my Honda Yaris, the car is in an immaculate state.',
-            'price' => '220.00',
-        ]);
-        $this->assertEquals('Selling my Honda Yaris, the car is in an immaculate state.', Listing::first()->description);
-        $this->assertEquals('220.00', Listing::first()->price);
-    }
 
 }

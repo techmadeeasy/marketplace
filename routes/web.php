@@ -18,11 +18,9 @@ Route::get('/', [\App\Http\Controllers\ListingController::class, 'index'])->name
 Route::get('/category/{category:slug}', [\App\Http\Controllers\ListingController::class, 'showByCategory'])->name('listing-by-category');
 Route::get('/listing/{category_slug}/{listing:slug}', [\App\Http\Controllers\ListingController::class, 'show'])->name('view-listing');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::resource('/dashboard/listings', \App\Http\Controllers\UserListingController::class, ['as' => 'dashboard'])->middleware(['verified']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -28,8 +28,6 @@ class UserListingController extends Controller
      */
     public function create()
     {
-
-
         return view('user_listings/create');
     }
 
@@ -60,10 +58,10 @@ class UserListingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param   Listing  $listing
+     * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit( Listing  $listing)
     {
         //
     }

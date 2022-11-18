@@ -17,7 +17,7 @@ class ListingController extends Controller
 
     public function show($categorySlug, Listing $listing)
     {
-        return view('listings.view', [
+        return view('listings.show', [
             'listing' => $listing->load(['user', 'category'])
         ]);
     }
