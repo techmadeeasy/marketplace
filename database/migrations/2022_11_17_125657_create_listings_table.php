@@ -21,10 +21,10 @@ return new class extends Migration
             $table->text('description');
             $table->string('image_path');
             $table->foreignId('category_id')->references('id')->on('listing_categories')->cascadeOnUpdate();
-            $table->date('date_published');
+            $table->date('publication_date');
             $table->date('date_unpublished')->nullable();
             $table->double('price', 10, 2);
-            $table->string('currency');
+            $table->string('currency')->default('ZAR');
             $table->timestamps();
         });
     }
