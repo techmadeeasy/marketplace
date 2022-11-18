@@ -23,10 +23,16 @@ class Listing extends Model
     }
 
 
-    public function scopeFilter($query, $term){
+    public function scopeTitle($query, $term){
         if ($term){
-            $query->where('title', 'like', '%'. $term . '%')
-                ->orWhere('description', 'like', '%'. $term . '%');
+            $query->where('title', 'like', '%'. $term . '%');
+        }
+    }
+
+
+    public function scopeCategory($query, $category=false){
+        if ($category){
+            $query->where('category_id', '=', $category);
         }
     }
 }

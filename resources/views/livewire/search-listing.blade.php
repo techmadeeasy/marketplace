@@ -13,4 +13,10 @@
                 </ul>
             </div>
         @endif
+    <select name="" id="" wire:model="categoryId" class='border-gray-700 text-black  bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm'>
+        <option value="">Category</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->title }}</option>
+        @endforeach
+    </select>
 </div>
