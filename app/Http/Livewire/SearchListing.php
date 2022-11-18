@@ -31,8 +31,10 @@ class SearchListing extends Component
 
     public function updatedCategoryId($categoryId)
     {
-       $this->results = Listing::latest()->title($this->search)
-               ->category($categoryId)->get();
+        if ($this->search){
+            $this->results = Listing::latest()->title($this->search)
+                ->category($categoryId)->get();
+        }
     }
 
     public function render()
