@@ -11,5 +11,8 @@
                 </x-listing-card>
             @endforeach
         </div>
+        <div >
+            {{ $listings->links('vendor.pagination.tailwind') }}
+        </div>
     </main>
 </x-layout>

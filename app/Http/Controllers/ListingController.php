@@ -11,7 +11,7 @@ class ListingController extends Controller
     public function index()
     {
         return view('listings.index', [
-            'listings' => Listing::with('user', 'category')->latest()->paginate()
+            'listings' => Listing::with('user', 'category')->latest()->paginate(5)
         ]);
     }
 
