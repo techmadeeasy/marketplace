@@ -24,4 +24,5 @@ STANDARD LARAVEL INSTALLATION REQUIREMENT APPLIES
 - Run php artisan migrate
 - Run php artisan db:seed
 - Run php artisan storage:link (to symlink)
+- Run npm install && npm run dev
 - Run php artisan serve if not using valet
